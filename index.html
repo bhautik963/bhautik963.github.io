@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bhautik Poshiya Portfolio</title>
+<meta name="description" content="Bhautik Poshiya, Senior MEAN Stack Developer in Ahmedabad. Angular, NestJS, Node.js, Stripe payments and Microfrontends. Open to full-time and contract work.">
+<meta name="theme-color" content="#1A56F0">
+<meta property="og:title" content="Bhautik Poshiya, Senior MEAN Stack Developer">
+<meta property="og:description" content="Angular, NestJS and Stripe payments. Open to full-time and contract work, remote or hybrid.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231A56F0'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EBP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -40,6 +45,11 @@ h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;letter-sp
 section{padding:72px 0 0}
 h2{font-size:clamp(28px,4vw,40px);margin-bottom:28px}
 
+.skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#fff;padding:8px 14px;border-radius:6px;z-index:50}
+.skip:focus{left:8px}
+.avail{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:20px;color:var(--ink)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--paid);box-shadow:0 0 0 4px color-mix(in srgb,var(--paid) 25%,transparent);flex:none}
+.big{display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:20px}
 /* nav */
 header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
 header.top.stuck{border-bottom-color:var(--line)}
@@ -59,7 +69,7 @@ nav ul a.on{color:var(--ink);border-bottom-color:var(--accent)}
 .role{font-family:var(--display);font-size:clamp(20px,2.4vw,26px);color:var(--accent);margin:14px 0 18px;font-weight:500}
 .lede{color:var(--muted);max-width:52ch;font-size:18px}
 .cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.btn{display:inline-block;padding:12px 20px;border-radius:8px;font-weight:600;text-decoration:none;font-size:16px}
+.btn{display:inline-block;padding:13px 22px;min-height:48px;border-radius:8px;font-weight:600;text-decoration:none;font-size:16px}
 .btn.primary{background:var(--accent);color:#fff}
 :root[data-theme="dark"] .btn.primary{color:#07101D}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.primary{color:#07101D}}
@@ -126,12 +136,16 @@ footer{padding:64px 0 40px;color:var(--muted);font-size:14px}
   nav ul{display:none;order:5;width:100%;flex-direction:column;gap:4px;padding:8px 0 12px}
   nav ul.open{display:flex}
   nav ul a{display:block;padding:10px 0;font-size:17px}
-  .hero{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;padding-top:24px}
+  .cta .btn{flex:1 1 140px;text-align:center}
+  section{padding-top:56px}
+  .contact dl{grid-template-columns:1fr;gap:2px 0}
+  .contact dd{margin-bottom:12px}
   .job{grid-template-columns:1fr}
   .contact{grid-template-columns:1fr}
 }
 
-.copy{display:inline-flex;gap:8px;align-items:center;margin-left:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:2px 10px;font:500 13px var(--body);cursor:pointer}
+.copy{display:inline-flex;gap:8px;align-items:center;margin-left:10px;min-height:32px;background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:2px 10px;font:500 13px var(--body);cursor:pointer}
 .copy:hover{border-color:var(--accent)}
 .totop{position:fixed;right:16px;bottom:16px;background:var(--accent);color:#fff;border:0;border-radius:999px;width:44px;height:44px;font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
 .totop.show{opacity:1;pointer-events:auto}
@@ -140,7 +154,12 @@ footer{padding:64px 0 40px;color:var(--muted);font-size:14px}
 .replay{background:none;border:1px solid rgba(124,140,166,.4);color:var(--log-ink);border-radius:6px;padding:2px 10px;font:500 12px var(--mono);cursor:pointer}
 .replay:hover{border-color:var(--log-ink)}
 .ev .st{transition:opacity .3s}
-.ev.hide{opacity:.15}
+.ev.hide{opacity:.45}
+@media print{
+  header.top,.totop,.cta,.replay,.copy,.theme{display:none}
+  body{background:#fff;color:#000}
+  section{padding-top:28px;break-inside:avoid}
+}
 @media (prefers-reduced-motion:reduce){
   .proj,.chips li{transition:none}.proj:hover{transform:none}
   html{scroll-behavior:auto}
@@ -149,6 +168,7 @@ footer{padding:64px 0 40px;color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
+<a class="skip" href="#about">Skip to content</a>
 <header class="top"><div class="wrap">
   <nav aria-label="Main">
     <a class="brand" href="#top">Bhautik Poshiya</a>
@@ -166,13 +186,15 @@ footer{padding:64px 0 40px;color:var(--muted);font-size:14px}
 <div class="wrap">
   <div class="hero" id="top">
     <div>
+      <p class="avail"><span class="dot" aria-hidden="true"></span>Open to full-time and contract roles, remote or hybrid</p>
       <h1>Bhautik Poshiya</h1>
       <p class="role">Senior MEAN Stack Developer</p>
       <p class="lede">I build and maintain enterprise web apps with Angular, NestJS and Node.js. Most of my recent work is payments: Stripe Connect, Terminal, payment links and payout webhooks that have to behave in production.</p>
       <div class="cta">
-        <a class="btn primary" href="#contact">Get in touch</a>
-        <a class="btn ghost" href="https://github.com/bhautikposhiya">GitHub profile</a>
-        <a class="btn ghost" href="https://linkedin.com/in/bhautikposhiya">LinkedIn profile</a>
+        <a class="btn primary" href="mailto:b.s.poshiya@gmail.com">Email me</a>
+        <a class="btn ghost" href="#experience">See my work</a>
+        <a class="btn ghost" href="https://linkedin.com/in/bhautikposhiya">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/bhautikposhiya">GitHub</a>
       </div>
     </div>
     <figure class="log" aria-label="Example of the Stripe payout webhook events I handle">
@@ -190,7 +212,7 @@ footer{padding:64px 0 40px;color:var(--muted);font-size:14px}
 
   <div class="facts">
     <div><b>5 yrs 10 mos</b><span>Professional experience</span></div>
-    <div><b>22 APIs</b><span>Moved from Sails.js to NestJS in a live release</span></div>
+    <div><b>Angular + NestJS</b><span>Frontend and backend, end to end</span></div>
     <div><b>Remote or hybrid</b><span>Open to full-time and contract work</span></div>
   </div>
 
@@ -211,7 +233,7 @@ footer{padding:64px 0 40px;color:var(--muted);font-size:14px}
           <li>Create reusable Angular components and shared UI with Angular Material and Syncfusion so modules look and behave the same.</li>
           <li>Work in a Microfrontend setup with Module Federation, so teams can ship frontend apps and shared libraries independently.</li>
           <li>Design and maintain REST APIs and GraphQL services with NestJS, Apollo Server and TypeORM.</li>
-          <li>Moved legacy Sails.js services to NestJS in staged releases, including a live release of 22 APIs.</li>
+          <li>Moved legacy Sails.js services to NestJS in staged releases.</li>
           <li>Implement Stripe, Stripe Connect and Stripe Terminal flows: payment links, connected accounts, webhook events and the full payout lifecycle.</li>
           <li>Build and troubleshoot Elasticsearch search, filtering and pagination, including query tuning and large result sets.</li>
           <li>Investigate memory leaks, CPU spikes, slow frontends and real-time update problems.</li>
